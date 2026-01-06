@@ -13,7 +13,7 @@ from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 router = routers.DefaultRouter()
 router.register('posts', PostViewSet)
 router.register('groups', GroupViewSet)
-router.register('comments', CommentViewSet)
+router.register(r'posts/(?P<post_id>\d+)/comments', CommentViewSet, basename='comment')
 
 urlpatterns = [
     path('', include(router.urls)),
