@@ -1,5 +1,6 @@
 from django.urls import path
 from rest_framework import routers
+from rest_framework.authtoken import views
 from django.urls import include
 from django.contrib import admin
 from django.conf import settings
@@ -14,4 +15,9 @@ router.register('posts', PostViewSet)
 router.register('groups', GroupViewSet)
 router.register('comments', CommentViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+    path('api-token-auth/', views.obtain_auth_token),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+]

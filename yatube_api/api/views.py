@@ -10,7 +10,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(author=self.request.user)
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
